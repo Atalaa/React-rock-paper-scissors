@@ -1,10 +1,58 @@
-.container{
+.container {
   width: 800px;
 }
 
-.titleContainer{
+.titleContainer {
   background-color: #fff;
   border-radius: 5px;
   padding: 20px 0;
   margin-bottom: 50px;
+}
+
+.scoreContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.scoreContainer h3 {
+  margin-top: 0;
+  padding: 20px 0;
+  background-color: #181848;
+  color: #fff;
+}
+
+.score{
+  width: 200px;
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+
+.results{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 100px;
+  height: 200px;
+}
+
+.playerHand, 
+.computerHand{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; /*to have icon on the top and text underneath,
+  because I use flex, so to revert the direction of flex*/
+  background-color: #fff;
+  width: 200px;
+  height: 200px;
+  border-radius: 5px 5px 5px 5px;
+}
+
+.resultsWinner{
+  font-size: 24px;
+  color: #fff;
+}
+
+.resultsMessage{
+  color: #fff;
 }
