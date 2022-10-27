@@ -16,6 +16,7 @@ function App() {
         <h1>ROCK, PAPER, SCISSORS</h1>
         <p>Enjoy the game!</p>
       </div>
+      {/* score */}
       <div className={styles.scoreContainer}>
         <div className={styles.score}>
           <h3>Player</h3>
@@ -26,7 +27,8 @@ function App() {
           <p>Score: 0</p>
         </div>
       </div>
-      <div className={styles.results}>
+      {/* results */}
+      <div className={styles.resultsContainer}>
         <div className={styles.playerHand}>
           <FaRegHandRock color="black" size={60} />
           <p>Rock</p>
@@ -36,10 +38,26 @@ function App() {
           <p className={styles.resultsMessage}>Rock beats Scissors</p>
         </div>
         <div className={styles.computerHand}>
-          <FaRegHandPaper color="black" size={60}/>
+          <FaRegHandPaper color="black" size={60} />
           <p>Scissor</p>
         </div>
       </div>
+      {/* buttons choice */}
+      <div className={styles.choiceBtnContainer}>
+        <button className={`${styles.choiceBtn} ${styles.bounce}`}>
+          <FaRegHandRock color="black" size={60} />
+          Rock
+        </button>
+        <button className={`${styles.choiceBtn} ${styles.bounce}`}>
+          <FaRegHandPaper color="black" size={60} />
+          Paper
+        </button>
+        <button className={`${styles.choiceBtn} ${styles.bounce}`}>
+          <FaRegHandScissors color="black" size={60} />
+          Scissors
+        </button>
+      </div>
+      <button className={styles.playBtn}>Play</button>
     </div>
   );
 }
