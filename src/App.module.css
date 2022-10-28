@@ -96,3 +96,8 @@
 .activeHand{
   background-color: lime;
 }
+
+.timer{
+  color: #fff;
+  font-size: 200px;
+}
