@@ -8,7 +8,26 @@ import {
 import styles from "./App.module.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [playerHand, setPlayerHand] = useState(0);
+  const [computerHand, setComputerHand] = useState(0);
+
+  //human player
+  const selectHand = (handIndex) => {
+    setPlayerHand(handIndex);
+  };
+
+  //computer
+  const generateComputerHand = () => {
+    const randomeNumber = Math.floor(Math.random() * 3);
+    setComputerHand(randomeNumber);
+  };
+
+  const play = () => {
+    generateComputerHand();
+  };
+
+  console.log("playerHand:", playerHand);
+  console.log("computerHand:", computerHand);
 
   return (
     <div className={styles.container}>
@@ -44,20 +63,37 @@ function App() {
       </div>
       {/* buttons choice */}
       <div className={styles.choiceBtnContainer}>
-        <button className={`${styles.choiceBtn} ${styles.bounce}`}>
+        <button
+          className={`${styles.choiceBtn} ${styles.bounce} ${
+            playerHand === 0 ? styles.activeHand : ""
+          }`}
+          onClick={() => selectHand(0)}
+        >
           <FaRegHandRock color="black" size={60} />
           Rock
         </button>
-        <button className={`${styles.choiceBtn} ${styles.bounce}`}>
+        <button
+          className={`${styles.choiceBtn} ${styles.bounce} ${
+            playerHand === 1 ? styles.activeHand : ""
+          }`}
+          onClick={() => selectHand(1)}
+        >
           <FaRegHandPaper color="black" size={60} />
           Paper
         </button>
-        <button className={`${styles.choiceBtn} ${styles.bounce}`}>
+        <button
+          className={`${styles.choiceBtn} ${styles.bounce} ${
+            playerHand === 2 ? styles.activeHand : ""
+          }`}
+          onClick={() => selectHand(2)}
+        >
           <FaRegHandScissors color="black" size={60} />
           Scissors
         </button>
       </div>
-      <button className={styles.playBtn}>Play</button>
+      <button className={styles.playBtn} onClick={play}>
+        Play
+      </button>
     </div>
   );
 }

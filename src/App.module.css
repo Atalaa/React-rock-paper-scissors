@@ -87,7 +87,12 @@
 
 .bounce {
   transition: all .2s ease-in-out;
+  /* I want all properties to get a transition effect with .2s, have an animation ease-in-out */
 }
 .bounce:hover{
   transform: translateY(-15px);
+}
+
+.activeHand{
+  background-color: lime;
 }
