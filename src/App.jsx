@@ -17,6 +17,8 @@ function App() {
     message: "",
   });
 
+  const [score, setScore] = useState({ player: 0, computer: 0 });
+
   const icons = [
     { name: "rock", icon: <FaRegHandRock color="black" size={60} /> },
     { name: "paper", icon: <FaRegHandPaper color="black" size={60} /> },
@@ -36,6 +38,10 @@ function App() {
   }, [runTimer, timer]);
 
   const selectHand = (handIndex) => {
+    setResults({
+      winner: "",
+      message: "",
+    });
     setPlayerHand(handIndex);
   };
 
@@ -48,12 +54,13 @@ function App() {
     setResults({
       winner: "",
       message: "",
-    })
+    });
     setRunTimer(true);
     generateComputerHand();
   };
 
   const whoWon = () => {
+    //DRAW
     if (
       icons[playerHand].name === "rock" &&
       icons[computerHand].name === "rock"
@@ -69,36 +76,48 @@ function App() {
       icons[computerHand].name === "scissors"
     ) {
       setResults({ winner: "We have a Draw!", message: "There is no winner" });
-    } else if (
-      icons[playerHand].name === "rock" &&
-      icons[computerHand].name === "paper"
-    ) {
-      setResults({ winner: "Computer", message: "Paper beats rock" });
-    } else if (
+    }
+
+    // PLAYER WINS
+    else if (
       icons[playerHand].name === "rock" &&
       icons[computerHand].name === "scissors"
     ) {
       setResults({ winner: "Player", message: "Rock beats scissors" });
+      setScore({ ...score, player: score.player + 1 });
     } else if (
       icons[playerHand].name === "paper" &&
       icons[computerHand].name === "rock"
     ) {
       setResults({ winner: "Player", message: "Paper beats rock" });
-    } else if (
-      icons[playerHand].name === "paper" &&
-      icons[computerHand].name === "scissors"
-    ) {
-      setResults({ winner: "Computer", message: "Scissors beats paper" });
-    } else if (
-      icons[playerHand].name === "scissors" &&
-      icons[computerHand].name === "rock"
-    ) {
-      setResults({ winner: "Computer", message: "Rock beats scissors" });
+      setScore({ ...score, player: score.player + 1 });
     } else if (
       icons[playerHand].name === "scissors" &&
       icons[computerHand].name === "paper"
     ) {
       setResults({ winner: "Player", message: "Scissors beats paper" });
+      setScore({ ...score, player: score.player + 1 });
+    }
+
+    // COMPUTER WINS
+    else if (
+      icons[playerHand].name === "rock" &&
+      icons[computerHand].name === "paper"
+    ) {
+      setResults({ winner: "Computer", message: "Paper beats rock" });
+      setScore({ ...score, computer: score.computer + 1 });
+    } else if (
+      icons[playerHand].name === "paper" &&
+      icons[computerHand].name === "scissors"
+    ) {
+      setResults({ winner: "Computer", message: "Scissors beats paper" });
+      setScore({ ...score, computer: score.computer + 1 });
+    } else if (
+      icons[playerHand].name === "scissors" &&
+      icons[computerHand].name === "rock"
+    ) {
+      setResults({ winner: "Computer", message: "Rock beats scissors" });
+      setScore({ ...score, computer: score.computer + 1 });
     }
   };
 
@@ -106,24 +125,24 @@ function App() {
     <main className={styles.container}>
       <div className={styles.titleContainer}>
         <h1>ROCK, PAPER, SCISSORS</h1>
-        <p>Enjoy the game!</p>
+        <p>React game!</p>
       </div>
 
       {/* SCORE */}
       <div className={styles.scoreContainer}>
         <div className={styles.score}>
           <h3>Player</h3>
-          <p>Score: </p>
+          <p>Score: {score.player}</p>
         </div>
         <div className={styles.score}>
           <h3>Computer</h3>
-          <p>Score: </p>
+          <p>Score: {score.computer}</p>
         </div>
       </div>
 
       {/* RESULTS */}
       <div className={styles.resultsContainer}>
-        {/* HUMAN PLAYER */}
+        {/* PLAYER */}
         <div className={styles.playerHand}>
           {runTimer && (
             <div className={styles.shakingHandPlayer}>{icons[0].icon}</div>
